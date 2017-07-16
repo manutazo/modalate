@@ -17,6 +17,7 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :image_medium
       t.integer :shipping_price
       t.belongs_to :category, index: true
+      t.belongs_to :source, index: true
 
 
       t.timestamps

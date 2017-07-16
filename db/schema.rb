@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170715113636) do
+ActiveRecord::Schema.define(version: 20170715175815) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "permalink"
+    t.index ["permalink"], name: "index_categories_on_permalink", using: :btree
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -35,15 +37,32 @@ ActiveRecord::Schema.define(version: 20170715113636) do
     t.string   "image_medium"
     t.integer  "shipping_price"
     t.integer  "category_id"
+    t.integer  "source_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "permalink"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["permalink"], name: "index_products_on_permalink", using: :btree
+    t.index ["source_id"], name: "index_products_on_source_id", using: :btree
+  end
+
+  create_table "provinces", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "idx"
+    t.string   "nombre"
+    t.integer  "country_id"
+    t.string   "lng"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "permalink"
+    t.index ["permalink"], name: "index_provinces_on_permalink", using: :btree
   end
 
   create_table "sources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "permalink"
+    t.index ["permalink"], name: "index_sources_on_permalink", using: :btree
   end
 
 end

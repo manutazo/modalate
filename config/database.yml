@@ -3,7 +3,7 @@
 default: &default
   adapter: mysql2
   username: root
-  password: "21011997"
+  password: <%= SECRET["DB_PASS"] %>
   host: localhost
   socket: /tmp/mysql.sock
 
